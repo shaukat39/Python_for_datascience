@@ -107,10 +107,10 @@ if uploaded_file:
     
     # Word count table at the end
     #st.sidebar.markdown("---")
-    #st.sidebar.subheader("Subscribe to our Youtube Channel to learn Data Science in Urdu/Hindi")
-    # add a youtube video
-    #st.sidebar.video("https://youtu.be/omk5b1m2h38")
-    #st.sidebar.markdown("---")
+    st.sidebar.subheader("Word Count Table")
+    st.sidebar.write(word_count.head(20))
+    st.sidebar.markdown(get_table_download_link(word_count, "word_count.csv", "Download Word Count Table"), unsafe_allow_html=True)
+
     # add author name and info
     st.sidebar.markdown("Created by: [Shaukat Hayat](https://github.com/shaukat39)")
-    #st.sidebar.markdown("Contact: [Email](mailto:aammar@codanics.com)")
+    
