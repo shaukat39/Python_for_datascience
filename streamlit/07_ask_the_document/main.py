@@ -7,7 +7,7 @@ import docx2txt
 import pyperclip
 import os  # Added the OS module to work with file directories
 
-# Setting up OpenAI API key
+# etting up OpenAI API key
 openai.api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
 # Defining a function to extract text from a PDF file
