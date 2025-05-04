@@ -1,23 +1,18 @@
-from flask import Flask, render_template, request, redirect, url_for
-import openai
+from flask import Flask, render_template, request
+import random
 
 app = Flask(__name__)
 
-# Load your OpenAI API key (hardcoded for testing purposes)
-openai_api_key = "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"
-
+# Simulate image generation by returning a random placeholder image URL
 def generate_image(prompt):
-    client = openai.OpenAI(api_key=openai_api_key)
-
-    response = client.images.generate(
-        model="dall-e-3",
-        prompt=prompt,
-        size="1024x1024",
-        quality="standard",
-        n=1,
-    )
-
-    return response.data[0].url
+    # List of placeholder images for simulation
+    placeholder_images = [
+        "https://via.placeholder.com/1024x1024?text=Sample+Image+1",
+        "https://via.placeholder.com/1024x1024?text=Sample+Image+2",
+        "https://via.placeholder.com/1024x1024?text=Sample+Image+3"
+    ]
+    # In real use, you'd use the prompt to generate the image; here we simulate it
+    return random.choice(placeholder_images)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -26,10 +21,7 @@ def index():
 
         if prompt:
             image_url = generate_image(prompt)
-            if image_url:
-                return render_template('index.html', image_url=image_url)
-            else:
-                return render_template('index.html', error='Failed to generate image. Please try again.')
+            return render_template('index.html', image_url=image_url)
         else:
             return render_template('index.html', error='Please enter a description.')
 
