@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>DALL·E 3 Image Generator</title>
+    <title>Image Generator</title>
 </head>
 <body>
-    <h1>DALL·E 3 Image Generator</h1>
-    <form method="post">
-        <input type="text" name="prompt" placeholder="Enter a prompt for DALL·E 3" required>
+    <h1>Image Generator (No API)</h1>
+    <form method="POST">
+        <input type="text" name="prompt" placeholder="Enter a description" required>
         <button type="submit">Generate Image</button>
     </form>
+
     {% if image_url %}
-    <div>
-        <img src="{{ image_url }}" alt="Generated Image" style="max-width: 100%; height: auto;">
-        <a href="/download-image?image_url={{ image_url }}">Download Image</a>
-    </div>
+        <h2>Generated Image:</h2>
+        <img src="{{ image_url }}" alt="Generated Image" width="400">
+    {% endif %}
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
     {% endif %}
 </body>
 </html>
